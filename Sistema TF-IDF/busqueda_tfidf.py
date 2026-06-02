@@ -4,6 +4,7 @@
 
 import numpy as np
 from preprocesado import preprocesar_texto
+from facetas_consulta import bonificacion_por_facetas
 
 
 def buscar_tfidf(consulta, vectorizador, matriz_tfidf, ids_documentos):
@@ -25,6 +26,12 @@ def buscar_tfidf(consulta, vectorizador, matriz_tfidf, ids_documentos):
 
     # Evitar división por cero
     similitudes = numerador / (norma_docs * norma_q + 1e-10)
+
+    bonificaciones = np.array(
+        [bonificacion_por_facetas(consulta, doc_id) for doc_id in ids_documentos],
+        dtype=float,
+    )
+    similitudes = similitudes + bonificaciones
 
     # Ordenar de mayor a menor
     ranking = sorted(

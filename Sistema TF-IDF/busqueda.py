@@ -3,6 +3,7 @@
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 
+from facetas_consulta import bonificacion_por_facetas
 from preprocesado import preprocesar_texto
 
 def buscar(
@@ -22,6 +23,8 @@ def buscar(
     vector_q = vectorizador.transform([query_preprocesada])
 
     similitudes = cosine_similarity(vector_q, matriz_tfidf)[0]  # array de tamaño n_docs
+    bonificaciones = [bonificacion_por_facetas(query, doc_id) for doc_id in ids_documentos]
+    similitudes = similitudes + bonificaciones
 
     # Ordenamos índices de mayor a menor similitud
     indices_ordenados = similitudes.argsort()[::-1]
