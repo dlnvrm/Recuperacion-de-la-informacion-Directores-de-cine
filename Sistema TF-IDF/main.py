@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from indexacion import construir_indice
 from busqueda_tfidf import buscar_tfidf   # tu función de ranking TF‑IDF
+from evaluacion import evaluar 
 
 # Mapa ID → Nombre del director
 DIRECTORES = {
@@ -48,7 +49,7 @@ DIRECTORES = {
 }
 
 
-def modo_interactivo(vectorizador, matriz_tfidf, ids):
+def modo_interactivo(vectorizador, matriz_tfidf, ids, map_global):
     print("\n" + "=" * 62)
     print("   SISTEMA TF‑IDF — Consultas en Texto Libre")
     print("=" * 62)
@@ -75,14 +76,21 @@ def modo_interactivo(vectorizador, matriz_tfidf, ids):
         for doc, score in ranking[:10]:
             nombre = DIRECTORES.get(doc, "Desconocido")
             print(f"  {doc:>6}  →  {nombre:<25}  (similitud = {score:.4f})")
+        
+        print(f"\nMAP del sistema: {map_global:.4f}\n")
+
         print()
 
 
 def main():
+    print("Calculando MAP global del sistema...")
+    resultados = evaluar()
+    map_global = resultados["_promedios"]["map"]
+
     print("Construyendo índice TF‑IDF...")
     vectorizador, matriz_tfidf, ids = construir_indice()
 
-    modo_interactivo(vectorizador, matriz_tfidf, ids)
+    modo_interactivo(vectorizador, matriz_tfidf, ids, map_global)
 
 
 if __name__ == "__main__":
