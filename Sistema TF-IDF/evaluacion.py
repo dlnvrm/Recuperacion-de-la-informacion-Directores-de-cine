@@ -66,3 +66,20 @@ def mean_average_precision(
         return 0.0
 
     return sum(APs) / len(APs)
+
+def evaluar():
+    """
+    Calcula el MAP global del sistema TF‑IDF.
+    Devuelve un diccionario con el MAP promedio.
+    """
+    from indexacion import construir_indice
+    vectorizador, matriz_tfidf, ids_documentos = construir_indice()
+
+    map_global = mean_average_precision(vectorizador, matriz_tfidf, ids_documentos)
+
+    return {
+        "_promedios": {
+            "map": map_global
+        }
+    }
+
