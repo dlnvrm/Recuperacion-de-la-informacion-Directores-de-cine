@@ -16,7 +16,8 @@ from pathlib import Path
 
 from whoosh import index
 from whoosh.fields import Schema, TEXT, ID
-from whoosh.analysis import StandardAnalyzer
+# 1. CAMBIO AQUÍ: Importamos SpaceSeparatedTokenizer en lugar de StandardAnalyzer
+from whoosh.analysis import SpaceSeparatedTokenizer
 
 from preprocesado import preprocesar_texto
 
@@ -24,10 +25,10 @@ BASE            = Path(os.path.dirname(os.path.abspath(__file__)))
 RUTA_DOCUMENTOS = BASE / "datos" / "documentos"
 CARPETA_INDICE  = BASE / "indice"
 
-# Esquema: cada documento tiene un ID (nombre de archivo) y un contenido (texto preprocesado)
+# 2. CAMBIO AQUÍ: Le indicamos al esquema que respete vuestra lista de tokens limpios
 SCHEMA = Schema(
     id       = ID(stored=True),
-    contenido= TEXT(stored=False, analyzer=StandardAnalyzer())
+    contenido= TEXT(stored=False, analyzer=SpaceSeparatedTokenizer()) # ← Tu limpiador manda
 )
 
 
@@ -51,7 +52,7 @@ def construir_indice() -> None:
         writer.add_document(id=ruta.name, contenido=texto_prep)
 
     writer.commit()
-    print(f"  ✓  Índice creado: {len(archivos)} documentos → '{CARPETA_INDICE.name}/'")
+    print(f"   ✓  Índice creado: {len(archivos)} documentos → '{CARPETA_INDICE.name}/'")
 
 
 def abrir_indice():
