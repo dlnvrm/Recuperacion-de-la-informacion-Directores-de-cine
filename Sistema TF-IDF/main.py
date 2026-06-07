@@ -6,7 +6,7 @@
 import json
 from pathlib import Path
 from indexacion import construir_indice
-from busqueda_tfidf import buscar_tfidf   # tu función de ranking TF‑IDF
+from busqueda import buscar
 from evaluacion import evaluar 
 
 # Mapa ID → Nombre del director
@@ -70,7 +70,7 @@ def modo_interactivo(vectorizador, matriz_tfidf, ids, map_global):
         if not consulta:
             continue
 
-        ranking = buscar_tfidf(consulta, vectorizador, matriz_tfidf, ids)
+        ranking = buscar(consulta, vectorizador, matriz_tfidf, ids)
 
         print("\nResultados:")
         for doc, score in ranking[:10]:
