@@ -13,21 +13,16 @@
 
 import os
 from pathlib import Path
-import sys
 
 from whoosh import index
 from whoosh.fields import Schema, TEXT, ID
 # 1. CAMBIO AQUÍ: Importamos SpaceSeparatedTokenizer en lugar de StandardAnalyzer
 from whoosh.analysis import SpaceSeparatedTokenizer
 
-RAIZ_REPOSITORIO = Path(__file__).resolve().parents[1]
-if str(RAIZ_REPOSITORIO) not in sys.path:
-    sys.path.insert(0, str(RAIZ_REPOSITORIO))
-
-from common.corpus import RUTA_DOCUMENTOS, crear_corpus
-from common.procesado import preprocesar_texto
+from preprocesado import preprocesar_texto
 
 BASE            = Path(os.path.dirname(os.path.abspath(__file__)))
+RUTA_DOCUMENTOS = BASE / "datos" / "documentos"
 CARPETA_INDICE  = BASE / "indice"
 
 # 2. CAMBIO AQUÍ: Le indicamos al esquema que respete vuestra lista de tokens limpios
@@ -42,7 +37,6 @@ def construir_indice() -> None:
     Lee todos los .txt de datos/documentos/, los preprocesa y los indexa.
     Guarda el índice en la carpeta indice/.
     """
-    crear_corpus()
     CARPETA_INDICE.mkdir(exist_ok=True)
 
     ix     = index.create_in(str(CARPETA_INDICE), SCHEMA)
@@ -64,6 +58,11 @@ def construir_indice() -> None:
 def abrir_indice():
     """Abre el índice ya creado en disco."""
     if not CARPETA_INDICE.exists():
+        raise FileNotFoundError(
+            f"No se encuentra '{CARPETA_INDICE}'.\n"
+            "Ejecuta primero construir_indice()."
+        )
+    return index.open_dir(str(CARPETA_INDICE))
         raise FileNotFoundError(
             f"No se encuentra '{CARPETA_INDICE}'.\n"
             "Ejecuta primero construir_indice()."
