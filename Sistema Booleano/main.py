@@ -10,6 +10,7 @@ import sys
 import json
 from pathlib import Path
 
+from crear_corpus import crear_corpus
 from indexacion import construir_indice
 from busqueda   import buscar
 from evaluacion import evaluar
@@ -95,12 +96,15 @@ def modo_interactivo():
             else:
                 print("  Sin resultados para esa consulta.")
         except Exception as e:
-            print(f"  ⚠  Consulta no válida: {e}")
+            print(f"Consulta no válida: {e}")
             print("     Usa AND, OR, NOT en MAYÚSCULAS.")
         print()
 
 
 def main():
+    print("Actualizando corpus desde Wikipedia...")
+    crear_corpus()
+
     # Construir el índice siempre al arrancar
     print("Construyendo índice invertido...")
     construir_indice()
@@ -121,6 +125,11 @@ def main():
         print(f"\n  Resultados guardados en: {ruta}")
     else:
         modo_interactivo()
+
+
+if __name__ == "__main__":
+    main()
+
 
 
 if __name__ == "__main__":
