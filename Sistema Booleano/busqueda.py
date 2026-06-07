@@ -9,9 +9,29 @@
 #   ()   → agrupar condiciones                "oscar AND (español OR mexicano)"
 
 from typing import List
+import re
 from whoosh.qparser import QueryParser
 
 from indexacion import abrir_indice
+
+
+def normalizar_consulta_booleana(consulta: str) -> str:
+    """
+    Normaliza los términos de la consulta sin romper AND/OR/NOT ni paréntesis.
+    """
+    tokens = re.findall(r"\(|\)|\bAND\b|\bOR\b|\bNOT\b|[^\s()]+", consulta, flags=re.IGNORECASE)
+    normalizados: list[str] = []
+
+    for token in tokens:
+        token_mayus = token.upper()
+        if token_mayus in {"AND", "OR", "NOT"}:
+            normalizados.append(token_mayus)
+        elif token in {"(", ")"}:
+            normalizados.append(token)
+        else:
+            normalizados.append(token.lower())
+
+    return " ".join(normalizados)
 
 
 def buscar(consulta: str) -> List[str]:
@@ -35,6 +55,7 @@ def buscar(consulta: str) -> List[str]:
 
     with ix.searcher() as searcher:
         parser     = QueryParser("contenido", ix.schema)
+        consulta   = normalizar_consulta_booleana(consulta)
         query      = parser.parse(consulta)
         hits       = searcher.search(query, limit=None)  # limit=None → todos los resultados
         resultados = [hit["id"] for hit in hits]

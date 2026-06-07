@@ -2,9 +2,17 @@
 #
 # Búsqueda en texto libre usando TF‑IDF + similitud del coseno
 
+from pathlib import Path
+import sys
+
 import numpy as np
-from preprocesado import preprocesar_texto
 from facetas_consulta import bonificacion_por_facetas
+
+RAIZ_REPOSITORIO = Path(__file__).resolve().parents[1]
+if str(RAIZ_REPOSITORIO) not in sys.path:
+    sys.path.insert(0, str(RAIZ_REPOSITORIO))
+
+from common.procesado import preprocesar_texto
 
 
 def buscar_tfidf(consulta, vectorizador, matriz_tfidf, ids_documentos):

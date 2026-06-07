@@ -2,12 +2,17 @@
 
 import os
 from pathlib import Path
+import sys
 from typing import List, Tuple
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-from preprocesado import preprocesar_texto
 
-RUTA_DOCUMENTOS = Path("datos/documentos")
+RAIZ_REPOSITORIO = Path(__file__).resolve().parents[1]
+if str(RAIZ_REPOSITORIO) not in sys.path:
+    sys.path.insert(0, str(RAIZ_REPOSITORIO))
+
+from common.corpus import RUTA_DOCUMENTOS, crear_corpus
+from common.procesado import preprocesar_texto
 
 def cargar_documentos() -> Tuple[List[str], List[str]]:
     """
@@ -36,6 +41,7 @@ def construir_indice():
     - matriz_tfidf: matriz documentos × términos
     - ids_documentos: lista de IDs de documentos
     """
+    crear_corpus()
     textos, ids = cargar_documentos()
     textos_preprocesados = [preprocesar_texto(t) for t in textos]
 

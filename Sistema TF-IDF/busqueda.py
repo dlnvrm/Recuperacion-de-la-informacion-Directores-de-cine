@@ -1,10 +1,17 @@
 # busqueda.py
 
+from pathlib import Path
+import sys
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 
 from facetas_consulta import bonificacion_por_facetas
-from preprocesado import preprocesar_texto
+
+RAIZ_REPOSITORIO = Path(__file__).resolve().parents[1]
+if str(RAIZ_REPOSITORIO) not in sys.path:
+    sys.path.insert(0, str(RAIZ_REPOSITORIO))
+
+from common.procesado import preprocesar_texto
 
 def buscar(
     query: str,
