@@ -58,7 +58,18 @@ def evaluar() -> Dict:
     print("─" * 76)
 
     for necesidad, info in datos.items():
-        consulta   = info["consulta_booleana"]
+        # Compatibilidad: aceptar dos formatos de relevancias.json
+        # - formato antiguo: contiene 'consulta_booleana' y 'relevantes'
+        # - formato simplificado: solo contiene 'relevantes'
+        if "consulta_booleana" in info:
+            consulta = info["consulta_booleana"]
+        else:
+            # Derivar una consulta booleana sencilla a partir del texto
+            # de la necesidad: tomar palabras relevantes (>2) y unir con AND.
+            import re
+            tokens = re.findall(r"[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+", necesidad.lower())
+            tokens = [t for t in tokens if len(t) > 2]
+            consulta = " AND ".join(tokens) if tokens else necesidad
         relevantes = info["relevantes"]
 
         recuperados = buscar(consulta)

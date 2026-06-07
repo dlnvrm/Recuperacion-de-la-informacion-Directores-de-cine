@@ -1,0 +1,179 @@
+{
+  "directores españoles de terror": {
+    "consulta_booleana": "directores AND españoles AND terror",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores estadounidenses de ciencia ficción": {
+    "consulta_booleana": "directores AND estadounidenses AND ciencia AND ficción",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores europeos premiados con Óscar": {
+    "consulta_booleana": "directores AND europeos AND premiados AND con AND óscar",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores japoneses de animación": {
+    "consulta_booleana": "directores AND japoneses AND animación",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores coreanos de thriller": {
+    "consulta_booleana": "directores AND coreanos AND thriller",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores españoles de cine social": {
+    "consulta_booleana": "directores AND españoles AND cine AND social",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores estadounidenses de terror clásico": {
+    "consulta_booleana": "directores AND estadounidenses AND terror AND clásico",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores italianos del neorrealismo": {
+    "consulta_booleana": "directores AND italianos AND del AND neorrealismo",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores franceses de la nouvelle vague": {
+    "consulta_booleana": "directores AND franceses AND nouvelle AND vague",
+    "recuperados": [
+      "47.txt",
+      "22.txt"
+    ],
+    "verdaderos_positivos": 1,
+    "precision": 0.5,
+    "recall": 0.5
+  },
+  "directores de animación japonesa contemporánea": {
+    "consulta_booleana": "directores AND animación AND japonesa AND contemporánea",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores de ciencia ficción modernos": {
+    "consulta_booleana": "directores AND ciencia AND ficción AND modernos",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores de terror contemporáneo": {
+    "consulta_booleana": "directores AND terror AND contemporáneo",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores latinoamericanos premiados": {
+    "consulta_booleana": "directores AND latinoamericanos AND premiados",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores británicos de drama": {
+    "consulta_booleana": "directores AND británicos AND drama",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores estadounidenses de comedia": {
+    "consulta_booleana": "directores AND estadounidenses AND comedia",
+    "recuperados": [
+      "48.txt",
+      "17.txt",
+      "20.txt",
+      "32.txt",
+      "62.txt",
+      "50.txt",
+      "30.txt",
+      "16.txt",
+      "27.txt",
+      "22.txt",
+      "18.txt"
+    ],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores europeos de cine experimental": {
+    "consulta_booleana": "directores AND europeos AND cine AND experimental",
+    "recuperados": [
+      "38.txt",
+      "8.txt"
+    ],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores de animación del Studio Ghibli": {
+    "consulta_booleana": "directores AND animación AND del AND studio AND ghibli",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores de cine noir": {
+    "consulta_booleana": "directores AND cine AND noir",
+    "recuperados": [
+      "24.txt",
+      "28.txt",
+      "47.txt",
+      "17.txt"
+    ],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores de cine independiente estadounidense": {
+    "consulta_booleana": "directores AND cine AND independiente AND estadounidense",
+    "recuperados": [
+      "20.txt",
+      "69.txt",
+      "17.txt",
+      "61.txt",
+      "51.txt",
+      "16.txt",
+      "30.txt",
+      "22.txt",
+      "25.txt"
+    ],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "directores de cine fantástico": {
+    "consulta_booleana": "directores AND cine AND fantástico",
+    "recuperados": [],
+    "verdaderos_positivos": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "_promedios": {
+    "precision_media": 0.025,
+    "recall_medio": 0.025
+  }
+}
